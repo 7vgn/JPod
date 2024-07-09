@@ -19,32 +19,45 @@ example to exclude teaser episodes of partially free/paid podcasts).
 JPod requires the curl, mrss, and libnxml libraries, as well as pkg-config.
 You will also need a somewhat recent GCC to compile the program.
 On Debian-based systems (Ubuntu, Mint etc.), you can install everything via
-> sudo apt-get install libcurl4 libmrss0-dev pkg-config build-essential
 
+```
+sudo apt-get install libcurl4 libmrss0-dev pkg-config build-essential
+```
 (libmrss will install libnxml as a dependency)
 
 ### Download JPod and Build it
-> git clone https://github.com/7vgn/JPod.git
-> cd JPod
-> make
-
+```
+git clone https://github.com/7vgn/JPod.git
+cd JPod
+make
+```
 If you wish, and have doxygen installed, you can also create the code
 documentation with
-> make doc
+
+```
+make doc
+```
 
 ### Installation
 To install JPod, use
-> sudo make install
 
+```
+sudo make install
+```
 This copies the binary into /opt/jpod/bin.
 
 To uninstall JPod, run
-> sudo make uninstall
+
+```
+sudo make uninstall
+```
 
 ## The Configuration File
 JPod comes with a template for the configuration file. Running
-> make newconf
 
+```
+make newconf
+```
 will place a copy into the home directory of the current user. JPod will
 always look for the configuration file at ~/.jpodconf
 
@@ -57,18 +70,26 @@ filenames.
 ## Using JPod
 If you run JPod on the command line without parameters or with --help, it will
 show a list of all possible arguments. The most important ones are
-> jpod update <UID>
 
+```
+jpod update <UID>
+```
 to update a single podcast and
-> jpod update
 
+```
+jpod update
+```
 to update all podcasts.
 
 ## Automating Podcast Downloads
 To automate podcast downloading, simply add call JPod to your crontab. Type
-> crontab -e
 
+```
+crontab -e
+```
 add the line
-> 45 1 * * * /opt/jpod/bin/jpod update
 
+```
+45 1 * * * /opt/jpod/bin/jpod update
+```
 then save and exit. This will run JPod every night at a quarter to two.
