@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<podlist>
+	<!--
+		List the individual podcast feeds here, using <feed ...>...</feed> or <feed ... /> just
+		  like the examples below. The <feed ...> tag has the following attributes:
+		- The "uid" of a feed is used to identify a feed (e.g. if you only want to update some
+		  rather than all feeds) and must be unique and contain no whitespaces. 
+		- The "basedir" is relative to the user's home directory. This is where all episodes of
+		  this feed get downloaded to. 
+		- The "filename" pattern determines how individual episodes should be named once downloaded. 
+		  Note that the filename is used to determine if an episode has been downloaded. That means
+		  if you change the pattern, previously downloaded episodes will probably be downloaded
+		  again. 
+		  Any placeholder %X (see list below) in the pattern will be replaced. After that, special
+		  characters (like '/', '?' etc.) will be removed. Finally, an extension will be added if
+		  the file has a recognized MIME type. 
+			%% - the percent sign
+			%P - the title of the feed
+			%C - the description of the feed
+			%T - the title of the episode
+			%D - the description of the episode
+			%Y, %y, %m, %b, %B, %W, %j, %d, %e, %a, %A, %w, %u, %H, %I, %M, %S, %p - elements of
+				the publication date of the episode (see std::put_time for details)
+		  The filename attribute is optional and defaults to "%Y-%m-%d_%T". Be careful when
+		  choosing the filename: the existence of a file with the same name (ignoring the
+		  extension) will determine if an episode is considered new (and thus downloaded) or not. 
+		Inside the <feed ...>...</feed> tags, you can place filters to determine which episodes
+		to include oder exclude from downloading. For example, some podcasts release teasers of
+		their paid episodes in the main feed, thus you might want to exclude all episodes whose
+		title ends with the string "[TEASER]". 
+		Each <filter ... /> tag must have the following attributes:
+		- The "type" attribute can be "include-if-match", "include-if-not-match",
+		  "exclude-if-match", or "exclude-if-not-match". 
+		- The "regex" attribute must be a valid regular expression following the std::regex
+		  specifications (see e.g. https://cplusplus.com/reference/regex/ECMAScript/). 
+		- The "match" attribute contains a string that is checked against the regex. It may contain
+		  the same kind of placeholders as the "filename" attribute of the "feed" tags. 
+		For each episode, all filters are checked in their given order. Once a filter succeeds
+		(i.e. it does or does not match, depending on the type), the episode is excluded or
+		included. Otherwise, the next filter is checked and so on. If none of the filters succeed,
+		the episode is included by default. 
+	-->
+	<feed uid="5-4"
+	      uri="https://feeds.acast.com/public/shows/5fc574d8d429ec34a8292b1c"
+	      basedir="Podcasts/5-4" />
+	<feed uid="IfBooksPod"
+	      uri="https://feeds.buzzsprout.com/2040953.rss"
+	      basedir="Podcasts/If Books Could Kill" />
+		<filter type="exclude-if-match" regex=".*\[TEASER\]" match="%T" />
+	</feed>
+</podlist>
