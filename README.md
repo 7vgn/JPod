@@ -1,22 +1,25 @@
 # JPod - A Primitive Podcatcher
 ## What is this?
 JPod is a very simple podcast downloader written in C++. It is not intended to
-replace sophisticated podcast management software but rather to archive podcasts
-with user-friendly filenames. It requires no database on its back-end and has
-very few dependencies.
+replace sophisticated podcast management software but rather to quickly archive
+podcasts with user-friendly filenames. It requires no database on its back-end
+and has very few dependencies.
 
 While JPod should compile on most platforms with little or no modifications, it
-mainly targeted at Linux. The installation script is Linux-only and the main
-use is to call it from cron.
+is mainly targeted at Linux. The installation script is Linux-only and the main
+use is to call it via cronjob.
 
 JPod is configured with a single, easy to understand XML file containing a list
-of podcast feeds, where to download them to, and how to name downloaded files.
-It also has the ability to filter podcast episodes by certain keywords (for
-example to exclude teaser episodes of partially free/paid podcasts).
+of podcast URIs, where to download them to, and how to name downloaded files.
+It is also possible to filter podcast episodes by certain keywords (for example
+to exclude teaser episodes of partially free/paid podcasts).
 
 ## Building and Installing
 ### Dependencies
-JPod requires the curl, mrss, and libnxml libraries, as well as pkg-config.
+JPod requires the [curl](https://curl.se/),
+[mRSS](https://github.com/bakulf/libmrss), and
+[nXML](https://github.com/bakulf/libnxml) libraries, as well as
+[pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/).
 You will also need a somewhat recent GCC to compile the program.
 On Debian-based systems (Ubuntu, Mint etc.), you can install everything via
 
@@ -72,7 +75,7 @@ If you run JPod on the command line without parameters or with --help, it will
 show a list of all possible arguments. The most important ones are
 
 ```
-jpod update <UID>
+jpod update <unique identifier string of the podcast>
 ```
 to update a single podcast and
 
